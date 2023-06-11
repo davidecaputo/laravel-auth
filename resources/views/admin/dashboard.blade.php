@@ -20,7 +20,7 @@
                 </nav>
             </div>
         </div>
-        <div class="sidebar-right p-5">
+        <div class="sidebar-right p-5 bg-dark-subtle">
             <div class="container vw-100">
                 <h2 class="fs-4 text-secondary my-4">
                     {{ __('Dashboard') }}

@@ -19,8 +19,32 @@
             </nav>
         </div>
     </div>
-    <div class="sidebar-right">
-
+    <div class="sidebar-right bg-dark-subtle">
+        <div class="container">
+            <div class="container bg-info p-5 rounded-5 my-5">
+                <form action="{{ route(('admin.works.update'), $work->id) }}" method="POST" class="text-white">
+                    @csrf
+                    @method('PUT')
+                    <div class="mb-3">
+                      <label for="title" class="form-label">Titolo</label>
+                      <input type="text" class="form-control" name="name" id="name" value="{{$work->name}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="image" class="form-label">Immagine</label>
+                        <input type="text" class="form-control" name="image" id="image" value="{{$work->image}}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Link</label>
+                        <input type="text" class="form-control" name="link" id="link" value="{{$work->link}}">
+                    </div>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" placeholder="Leave a comment here" name="description" id="description" style="height: 100px">{{$work->description}}</textarea>
+                        <label for="description">Descrizione</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Invio</button>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

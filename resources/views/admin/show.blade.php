@@ -19,8 +19,17 @@
             </nav>
         </div>
     </div>
-    <div class="sidebar-right">
-
+    <div class="sidebar-right bg-dark-subtle">
+        <div class="container p-5 d-flex justify-content-center">
+            <div class="card w-50">
+                <img src="{{$work->image}}" alt="{{$work->name}}">
+                <div class="card-body">
+                    <p>{{$work->name}}</p>
+                    <p>{{$work->description}}</p>
+                    <a href="{{$work->link}}" class="text-primary">{{$work->link}}</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

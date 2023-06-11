@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Work;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Str;
 
 class WorkController extends Controller
 {
@@ -26,7 +27,7 @@ class WorkController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.create');
     }
 
     /**
@@ -37,7 +38,15 @@ class WorkController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $newWork = new Work();
+        $newWork->name = $data['name'];
+        $newWork->slug = Str::slug($data['name'], '-');
+        $newWork->image = $data['image'];
+        $newWork->description = $data['description'];
+        $newWork->link = $data['link'];
+        $newWork->save();
+        return redirect()->route('admin.works.show', $newWork->id);
     }
 
     /**
@@ -48,7 +57,7 @@ class WorkController extends Controller
      */
     public function show(Work $work)
     {
-        //
+        return view('admin.show', compact('work'));
     }
 
     /**
@@ -59,7 +68,7 @@ class WorkController extends Controller
      */
     public function edit(Work $work)
     {
-        //
+        return view('admin.edit', compact('work'));
     }
 
     /**
@@ -71,7 +80,9 @@ class WorkController extends Controller
      */
     public function update(Request $request, Work $work)
     {
-        //
+        $data = $request->all();
+        $work->update($data);
+        return redirect()->route('admin.works.show', $work->id);
     }
 
     /**
@@ -82,6 +93,7 @@ class WorkController extends Controller
      */
     public function destroy(Work $work)
     {
-        //
+        $work->delete();
+        return redirect()->route('admin.works.index');
     }
 }

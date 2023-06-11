@@ -21,6 +21,7 @@
         </div>
         <div class="sidebar-right p-5 bg-dark-subtle">
             <h1 class="text-center mb-5">Lavori</h1>
+            <a href="{{route('admin.works.create')}}" class="btn btn-dark mb-4">Inserisci un nuovo lavoro</a>
             <table class="table table-hover border mb-5">
                 <thead>
                     <tr>
@@ -42,7 +43,15 @@
                             <td><img src="{{ $work->image }}" alt="{{ $work->name }}" class="img-thumbnail"></td>
                             <td>{{ $work->description }}</td>
                             <td><a href="{{ $work->link }}" class=" text-primary">{{ $work->link }}</a></td>
-                            <td class="fs-4" style="width: 110px"><i class="fa-regular fa-eye me-2"></i><i class="fa-regular fa-pen-to-square me-2"></i><i class="fa-regular fa-trash-can" style="color: #e90c0c;"></i></td>
+                            <td class="fs-4" style="width: 120px">
+                                <a href="{{route('admin.works.show', $work->id)}}" class="text-primary"><i class="fa-regular fa-eye me-2"></i></a>
+                                <a href="{{route('admin.works.edit', $work->id)}}" class="text-primary"><i class="fa-regular fa-pen-to-square me-2"></i></a>
+                                <form action="{{route('admin.works.destroy', $work->id)}}" method="POST" class="d-inline">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button class="btn fs-4 p-0 mb-2"><i class="fa-regular fa-trash-can" style="color: #e90c0c;"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                     <tr>
